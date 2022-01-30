@@ -1,0 +1,138 @@
+<title>User Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="container-fluid">
+        <h1 style="text-align: center;font-size: 50px;color:black;">SPORTS CART</h1><br>
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/userviewprofile/{{user.uid}}">View Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/userproductpurchase/{{user.uid}}">Purchase Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/userfeedback/{{user.uid}}">Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="/userlogin">Logout</a>
+          </li>
+        </ul><br><br><br>
+        <h3 style="color:maroon;">User {{user.username}} Logged in...</h3>
+        <div style="padding:3% 3%;margin: auto;background-color:lightgoldenrodyellow;">
+        <div class="container-fluid">
+          <h1 style="text-align: center;">PURCHASE PRODUCTS</h1><br>
+            <div class="row">
+                <div class="col-sm">
+                  <h4 style="text-align: center;">Available Category</h4>
+                    <ul
+                      class="list-group list-group-flush"
+                      *ngFor="let cat of cats "
+                    >
+                      <li class="list-group-item">
+                        <p>{{cat.category}}</p>
+                      </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                  <h4 style="text-align: center;">Available Sub-Category</h4>
+                    <ul
+                      class="list-group list-group-flush"
+                      *ngFor="let subcat of subcats "
+                    >
+                      <li class="list-group-item">
+                        <p>{{subcat.subcategory}}</p>
+                      </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                  <h4 style="text-align: center;">Available Brands</h4>
+                    <ul
+                      class="list-group list-group-flush"
+                      *ngFor="let bran of brans "
+                    >
+                      <li class="list-group-item">
+                        <p>{{bran.brand}}</p>
+                      </li>
+                    </ul>
+                </div>
+            </div><br><br>
+
+            <h3 style="text-align: center;">Search Products</h3><br>
+
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="category">Category:</label><br>
+                  <input type="text" class="form-control" [(ngModel)]="test.category" placeholder="Enter Search Category" id="category" name="category">
+                </div><br>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="subcategory">Sub-Category:</label><br>
+                  <input type="text" class="form-control" [(ngModel)]="test.subcategory" placeholder="Enter Search Sub-Category" id="subcategory" name="subcategory">
+                </div><br>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="brand">Brand:</label><br>
+                  <input type="text" class="form-control" [(ngModel)]="test.brand" placeholder="Enter Search Brand" id="brand" name="brand">
+                </div><br>
+              </div>
+            </div>
+            <button class="btn btn-info" (click)="search(test.category,test.subcategory,test.brand)">Search</button><br>
+            <br><br>
+
+
+            <div class="card mt-3">
+              <div class="card-header text-center"><h2>List of Products</h2></div>
+              <div class="row">
+                  <div class="col-6">
+                      <ul
+                          class="list-group list-group-flush"
+                          *ngFor="let product of products "
+                      >
+                      <li class="list-group-item">
+                        <h3>Id : {{product.pid}}</h3>
+                        <h3>Category : {{product.category}} </h3>
+                        <h3>Sub-Category : {{product.subcategory}}</h3>
+                        <h3>Brand : {{product.brand}}</h3>
+                        <h3>Product Name : {{product.productname}}</h3>
+                        <h3>Stock : {{product.stock}} <br>Size : {{product.size}}</h3>
+                        <h3>Colour : {{product.colour}} <br> Price : {{product.price}}</h3><br>
+                        <button class="btn btn-info" (click)="order(product.pid,user.uid)">Order</button><br>
+                      </li>
+                      </ul>
+                  </div>
+                  <div class="col-6">
+                      <ul
+                          class="list-group list-group-flush"
+                          *ngFor="let product of products "
+                      >
+                      <li class="list-group-item">
+                      <img [src]="product.url" style="width:500px;height:400px;"><br>
+                      <a href="{{ product.url }}">{{ product.filename }}</a><br>
+                </li>
+              </ul>
+                  </div>
+              </div>
+              </div>
+            </div><br><br>
+
+
+
+
+
+
+
+
+        </div>
+        </div>
+    

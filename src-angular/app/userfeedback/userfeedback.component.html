@@ -1,0 +1,54 @@
+<title>User Feedback</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="container-fluid">
+        <h1 style="text-align: center;font-size: 50px;color:black;">SPORTS CART</h1><br>
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/userviewprofile/{{user.uid}}">View Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/userproductpurchase/{{user.uid}}">Purchase Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/userfeedback/{{user.uid}}">Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="/userlogin">Logout</a>
+          </li>
+        </ul><br><br><br>
+        <h3 style="color:maroon;">User {{user.username}} Logged in...</h3>
+        <div style="padding:3% 3%;margin: auto;background-color:lightgoldenrodyellow;">
+        <div class="container-fluid">
+          <h1 style="text-align: center;">FEEDBACK</h1><br>
+          <div class="row">
+
+            <div class="col-sm">
+                <div style="margin:auto;border:2px solid white;border-radius:5px;padding: 10px;">
+                  <h3 style="text-align: center;">Feedback(All information required*)</h3>
+                    <form action="#" post="method">
+                      <div class="form-group">
+                        <label for="fid">Feedback Id:</label><br>
+                        <input type="number" class="form-control" [(ngModel)]="feedback.fid" placeholder="Enter Feedback Id while updating Only" id="fid" name="fid">
+                      </div><br>
+                      <div class="form-group">
+                        <label for=" username">Userame:</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="feedback.username" placeholder="Enter User Name" id="username" name="username" required>
+                      </div><br>  
+                        <div class="form-group">
+                            <label for="message">Message:</label><br>
+                            <textarea class="form-control" [(ngModel)]="feedback.message" placeholder="Enter Message" id="message" name="message" required style="height: 200px;"></textarea>
+                          </div><br>
+                          <input type="submit" class="btn btn-success" style="width:45%;font-size:30px;background-color:blue;color:white;" value="Send" (click)="postFeedbackNow()"><br> 
+
+                    </form>
+                </div>
+            </div>

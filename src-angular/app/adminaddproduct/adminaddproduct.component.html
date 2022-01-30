@@ -1,0 +1,189 @@
+<title>Add Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="container-fluid">
+        <h1 style="text-align: center;font-size: 50px;color:black;">SPORTS CART</h1><br>
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminadduser">Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/adminaddproduct">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminaddorder">Add Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminviewfeedback">View Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="/adminlogin">Logout</a>
+          </li>
+        </ul><br><br><br>
+        <h3 style="color:maroon;">Admin Logged in...</h3>
+        <div style="padding:3% 3%;margin: auto;background-color:lightgoldenrodyellow;">
+        <div class="container-fluid">
+          <h1 style="text-align: center;">PRODUCT MANAGEMENT</h1><br>
+          <div class="row">
+            <div class="col-sm-4">
+              <div style="margin:auto;border:2px solid white;border-radius:5px;padding: 10px;">
+                <h3 style="text-align: center;">Add Products(All information required*)</h3>
+                  <form action="#" post="method">
+                    <div class="form-group">
+                      <label for="pid">Product Id:</label><br>
+                      <input type="number" class="form-control" [(ngModel)]="product.pid" placeholder="Enter Product Id while updating Only" id="pid" name="pid">
+                    </div><br>
+                    <div class="form-group">
+                      <label for="category">Category:</label><br>
+                      <input type="text" class="form-control" [(ngModel)]="product.category" placeholder="Enter Category" id="category" name="category" required>
+                    </div><br>  
+                      <div class="form-group">
+                          <label for="subcategory">Sub-Category:</label><br>
+                          <input type="text" class="form-control" [(ngModel)]="product.subcategory" placeholder="Enter Sub-Category" id="subcategory" name="subcategory" required>
+                        </div><br>
+                        <div class="form-group">
+                          <label for="brand">Brand:</label><br>
+                          <input type="text" class="form-control" [(ngModel)]="product.brand" placeholder="Enter Brand" id="brand" name="brand" required>
+                        </div><br>
+
+
+
+
+                        <div class="form-group">
+                            <label for="upload">Upload Product Image:</label><br>
+                          <div class="row">
+                            <div class="col-sm">
+                              <label class="btn btn-default p-0">
+                                <input type="file" (change)="selectFile($event)" >
+                              </label>
+                            </div>
+                          
+                          </div>
+                          
+                          <div *ngIf="currentFile" class="progress my-3">
+                            <div
+                              class="progress-bar progress-bar-info progress-bar-striped"
+                              role="progressbar"
+                              attr.aria-valuenow="{{ progress }}"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              [ngStyle]="{ width: progress + '%' }"
+                            >
+                              {{ progress }}%
+                            </div>
+                          </div>
+                          
+                          <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+                          <br>
+                          <h4>{{msg}}</h4>
+                          </div>
+                    
+
+
+
+
+
+                        <div class="form-group">
+                          <label for="productname">Product Name:</label><br>
+                          <input type="text" class="form-control" [(ngModel)]="product.productname" placeholder="Enter Product Name" id="productname" name="productname" required>
+                        </div><br>
+                        <div class="form-group">
+                          <label for="stock">Stock Available:</label><br>
+                          <input type="text" class="form-control" [(ngModel)]="product.stock" placeholder="Enter Stock Available" id="stock" name="stock" required>
+                        </div><br>
+                        <div class="form-group">
+                          <label for="size">Size:</label><br>
+                          <input type="text" class="form-control" [(ngModel)]="product.size" placeholder="Enter Size" id="size" name="size" required>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="colour">Colour:</label><br>
+                            <input type="text" class="form-control" [(ngModel)]="product.colour" placeholder="Enter Colour" id="colour" name="colour" required>
+                          </div><br>
+                          <div class="form-group">
+                            <label for="price">Price:</label><br>
+                            <input type="text" class="form-control" [(ngModel)]="product.price" placeholder="Enter Price" id="price" name="price" required>
+                          </div><br>
+
+                      <input type="submit" class="btn btn-primary" style="width:45%;font-size:30px;background-color:blue;color:white;" value="Register"  (mouseenter)="upload()" (click)="postProduct()">
+                      <input type="submit" class="btn btn-success" style="width:45%;font-size:30px;background-color:coral;color:white;" value="Update"  (mouseenter)="upload()" (click)="updateProduct()"><br>
+                  
+                  </form>
+                  </div>
+                </div><br><br><br><br><br>
+                <div class="col-sm-8">
+
+
+
+
+                    <div class="card mt-3">
+                        <div class="card-header text-center"><h2>List of Products</h2></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul
+                                    class="list-group list-group-flush"
+                                    *ngFor="let product of products "
+                                >
+                                <li class="list-group-item">
+                                  <h3>Id : {{product.pid}}</h3>
+                                  <h3>Category : {{product.category}} </h3>
+                                  <h3>Sub-Category : {{product.subcategory}}</h3>
+                                  <h3>Brand : {{product.brand}}</h3>
+                                  <h3>Product Name : {{product.productname}}</h3>
+                                  <h3>Stock : {{product.stock}} <br>Size : {{product.size}}</h3>
+                                  <h3>Colour : {{product.colour}} <br> Price : {{product.price}}</h3><br>
+                                  <br><br><br>
+                                  <hr>
+                                </li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                            
+                              <ul
+                            class="list-group list-group-flush"
+                            *ngFor="let product of products "
+                            >
+                            <li class="list-group-item">
+                            <img [src]="product.url" style="width:400px;height:400px;" ><br>
+                            <a href="{{ product.url }}">{{ product.filename }}</a><br>
+                            <button class="btn btn-danger btn-xs" (mouseleave)="delFile(product.filename)" (click)="delProduct(product.pid)"><span class="glyphicon glyphicon-remove"></span> Delete</button><hr>
+                            </li>
+                            </ul>
+                            
+                            <!--  <ul
+                            class="list-group list-group-flush"
+                            *ngFor="let file of fileInfos | async"
+                            >
+                            <li class="list-group-item">
+                            <img [src]="file.url" style="width:400px;height:400px;" (click)="select(file.name)"><br>
+                            <a href="{{ file.url }}">{{ file.name }}</a><br>
+                            <button class="btn btn-danger btn-xs" (click)="delFile(product.filename)" (dblclick)="delProduct(product.pid)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                            </li>
+                            </ul>-->
+              
+                            </div>
+                        </div>
+                        </div>
+                      </div><br><br>
+
+
+
+                  
+                    
+   
+                </div>
+
+
+
+
+
+        </div>
+        </div>
+    </div>

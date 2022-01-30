@@ -1,0 +1,171 @@
+<title>Order Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="container-fluid">
+        <h1 style="text-align: center;font-size: 50px;color:black;">SPORTS CART</h1><br>
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminadduser">Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminaddproduct">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/adminaddorder">Add Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminviewfeedback">View Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="/adminlogin">Logout</a>
+          </li>
+        </ul><br><br><br>
+        <h3 style="color:maroon;">Admin Logged in...</h3>
+        <div style="padding:3% 3%;margin: auto;background-color:lightgoldenrodyellow;">
+        <div class="container-fluid">
+          <h1 style="text-align: center;">ORDER MANAGEMENT</h1><br>
+          <div class="row">
+          <div class="col-sm-4">
+            <div style="margin:auto;border:2px solid white;border-radius:5px;padding: 10px;">
+              <h3 style="text-align: center;">Order Products(All information required*)</h3>
+                <form action="#" post="method">
+                  <div class="form-group">
+                    <label for="oid">Order Id:</label><br>
+                    <input type="number" class="form-control" [(ngModel)]="order.oid" placeholder="Enter Order Id while updating Only" id="oid" name="oid">
+                  </div><br>
+                  <div class="form-group">
+                    <label for="brand">Brand:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="order.brand" placeholder="Enter Brand" id="brand" name="brand" required>
+                  </div><br>
+                  <div class="form-group">
+                    <label for="productname">Product Name:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="order.productname" placeholder="Enter Product Name" id="productname" name="productname" required>
+                  </div><br>
+                  <div class="form-group">
+                    <label for="size">Size:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="order.size" placeholder="Enter Size" id="size" name="size" required>
+                  </div><br>  
+                  <div class="form-group">
+                    <label for="colour">Colour:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="order.colour" placeholder="Enter Colour" id="colour" name="colour" required>
+                  </div><br>
+                  <div class="form-group">
+                    <label for="username">User Name:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="order.username" placeholder="Enter User Name" id="username" name="username" required>
+                  </div><br>
+                    <div class="form-group">
+                        <label for="address">Delivery Address:</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="order.address" placeholder="Enter Delivery Address" id="address" name="address" required>
+                      </div><br>
+                      <div class="form-group">
+                        <label for="items">Items:</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="order.items" placeholder="Enter Items" id="items" name="items" required>
+                      </div><br>
+
+                      <div class="form-group">
+                        <label for="paymentstatus">Payment Status:</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="order.paymentstatus" placeholder="Enter Payment Status" id="paymentstatus" name="paymentstatus" required>
+                      </div><br>
+                      <div class="form-group">
+                        <label for="price">Total Price:</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="order.price" placeholder="Enter Total Price Of Order" id="price" name="price" required>
+                      </div><br>
+                      <div class="form-group">
+                        <label for="phone">Phonenumber:</label><br>
+                        <input type="tel" class="form-control" [(ngModel)]="order.phone" placeholder="Enter Phonenumber" id="phone" name="phone" pattern="[0-9]{12}" required>
+                      </div><br>
+                    <input type="submit" class="btn btn-primary" style="width:45%;font-size:30px;background-color:blue;color:white;" value="Register" (click)="postOrderNow()">
+                    <input type="submit" class="btn btn-success" style="width:45%;font-size:30px;background-color:coral;color:white;" value="Update" (click)="updateOrderNow()"><br>
+                
+                </form>
+                </div>
+              </div><br><br><br><br><br>
+              <div class="col-sm-8">
+                <h3 style="text-align: center;">Search Order By Oid</h3>
+                <br>
+                <div class="form-group">
+                    <label for="search">Search By Oid:</label><br>
+                    <input type="number" class="form-control" [(ngModel)]="search.a" placeholder="Search By Oid" id="search" name="search"><br>
+                    <button class="btn btn-info btn-xs" (click)="searchById(search.a)"><span class="glyphicon glyphicon-remove"></span> Search</button><br>
+                  </div><br>
+                  <table class="table table-dark table-responsive">
+                    <tr>
+                        <th>Oid</th>
+                        <th>Brand</th>
+                        <th>Product Name</th>
+                        <th>Size</th>
+                        <th>Colour</th>
+                        <th>User Name</th>
+                        <th>Delivery Address</th>
+                        <th>Items</th>
+                        <th>Payment Status</th>
+                        <th>Price</th>
+                        <th>Phone</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr >
+                        <td>{{order.oid}}</td>
+                        <td>{{order.brand}}</td>
+                        <td>{{order.productname}}</td>
+                        <td>{{order.size}}</td>
+                        <td>{{order.color}}</td>
+                        <td>{{order.username}}</td>
+                        <td>{{order.address}}</td>
+                        <td>{{order.items}}</td>
+                        <td>{{order.paymentstatus}}</td>
+                        <td>{{order.price}}</td>
+                        <td>{{order.phone}}</td>
+                        <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delOrder(order.oid)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+                    </tr>
+                </table>
+                <br>
+
+                <h3 style="text-align: center;">List of Orders</h3>
+                <br>
+                <table class="table table-dark table-responsive">
+                  <thead>
+                  <tr>
+                    <th>Oid</th>
+                    <th>Brand</th>
+                    <th>Product Name</th>
+                    <th>Size</th>
+                    <th>Colour</th>
+                    <th>User Name</th>
+                    <th>Delivery Address</th>
+                    <th>Items</th>
+                    <th>Payment Status</th>
+                    <th>Price</th>
+                    <th>Phone</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let order of orders">
+                    <td>{{order.oid}}</td>
+                    <td>{{order.brand}}</td>
+                    <td>{{order.productname}}</td>
+                    <td>{{order.size}}</td>
+                    <td>{{order.color}}</td>
+                    <td>{{order.username}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.items}}</td>
+                    <td>{{order.paymentstatus}}</td>
+                    <td>{{order.price}}</td>
+                    <td>{{order.phone}}</td>
+                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delOrder(order.oid)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+                  </tr>
+                  </tbody>
+              </table><br><br>
+ 
+              </div>
+        </div>
+        </div>
+    </div>
